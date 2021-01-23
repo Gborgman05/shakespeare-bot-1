@@ -54,8 +54,12 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content.startswith('!sonnet'):
-        await message.channel.send(get_sonnet(message.content.split()[1].upper()))
+        await message.channel.send(get_sonnet(message))
 def get_sonnet(num):
+  try:
+    num =num.content.split()[1].upper()
+  except:
+    return "To be or not to be, is that your question?\nTo ask of me, say ```!sonnet num``` where num is the sonnet you require"
   try:
     return sonnets[write_roman(int(num))]
   except:
